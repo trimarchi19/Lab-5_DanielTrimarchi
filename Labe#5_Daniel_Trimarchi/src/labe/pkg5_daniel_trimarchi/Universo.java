@@ -52,17 +52,19 @@ public class Universo extends javax.swing.JFrame {
         tf_nombre = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jl_personas = new javax.swing.JList<>();
+        jl_mundos = new javax.swing.JList<>();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jl_personas1 = new javax.swing.JList<>();
+        jl_Criaturas = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         PasoalTree = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        criatura_al_mundo = new javax.swing.JToggleButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jt_personas = new javax.swing.JTree();
+        jt_Universos = new javax.swing.JTree();
         c_energia = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
-        Agregar_lista = new javax.swing.JButton();
+        Agregar_lista2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -72,9 +74,11 @@ public class Universo extends javax.swing.JFrame {
         c_edad = new javax.swing.JSpinner();
         c_region = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        c_raza = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        Agregar_lista1 = new javax.swing.JButton();
+        c_vivas = new javax.swing.JSpinner();
+        jLabel11 = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jTree1);
 
@@ -134,31 +138,33 @@ public class Universo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 51));
+        setMinimumSize(new java.awt.Dimension(1200, 600));
+        setSize(new java.awt.Dimension(1200, 1200));
         getContentPane().setLayout(null);
 
         jLabel4.setText("NOMBRE");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(0, 22, 78, 31);
         getContentPane().add(tf_nombre);
-        tf_nombre.setBounds(82, 27, 94, 20);
+        tf_nombre.setBounds(82, 27, 110, 40);
 
-        jl_personas.setModel(new DefaultListModel()
+        jl_mundos.setModel(new DefaultListModel()
         );
-        jl_personas.addMouseListener(new java.awt.event.MouseAdapter() {
+        jl_mundos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jl_personasMouseClicked(evt);
+                jl_mundosMouseClicked(evt);
             }
         });
-        jScrollPane4.setViewportView(jl_personas);
+        jScrollPane4.setViewportView(jl_mundos);
 
-        jl_personas1.setModel(new DefaultListModel()
+        jl_Criaturas.setModel(new DefaultListModel()
         );
-        jl_personas1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jl_Criaturas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jl_personas1MouseClicked(evt);
+                jl_CriaturasMouseClicked(evt);
             }
         });
-        jScrollPane5.setViewportView(jl_personas1);
+        jScrollPane5.setViewportView(jl_Criaturas);
 
         jLabel1.setText("Mundos Disco");
 
@@ -171,30 +177,47 @@ public class Universo extends javax.swing.JFrame {
 
         jLabel10.setText("Criaturas");
 
+        jTextField3.setBackground(new java.awt.Color(0, 153, 153));
+        jTextField3.setText("jTextField2");
+
+        criatura_al_mundo.setText("-->");
+        criatura_al_mundo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                criatura_al_mundoMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(PasoalTree, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(102, 102, 102))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(102, 102, 102))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(PasoalTree, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(criatura_al_mundo)
+                        .addGap(118, 118, 118))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,194 +232,172 @@ public class Universo extends javax.swing.JFrame {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PasoalTree))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(106, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(criatura_al_mundo)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(10, 210, 578, 324);
+        jPanel1.setBounds(10, 254, 578, 320);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Universo");
-        jt_personas.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jt_personas.addMouseListener(new java.awt.event.MouseAdapter() {
+        jt_Universos.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jt_Universos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jt_personasMouseClicked(evt);
+                jt_UniversosMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jt_personas);
+        jScrollPane2.setViewportView(jt_Universos);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(710, 50, 350, 370);
+        jScrollPane2.setBounds(690, 50, 350, 370);
 
         c_energia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         c_energia.setDoubleBuffered(true);
-        c_energia.setEnabled(false);
         c_energia.setValue(0
         );
         getContentPane().add(c_energia);
-        c_energia.setBounds(410, 90, 94, 20);
+        c_energia.setBounds(410, 80, 100, 30);
 
         jLabel2.setText("Peso");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 59, 78, 31);
 
-        Agregar_lista.setText("AGREGAR LISTA");
-        Agregar_lista.addMouseListener(new java.awt.event.MouseAdapter() {
+        Agregar_lista2.setText("AGREGAR LISTA");
+        Agregar_lista2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Agregar_listaMouseClicked(evt);
+                Agregar_lista2MouseClicked(evt);
             }
         });
-        Agregar_lista.addActionListener(new java.awt.event.ActionListener() {
+        Agregar_lista2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Agregar_listaActionPerformed(evt);
+                Agregar_lista2ActionPerformed(evt);
             }
         });
-        getContentPane().add(Agregar_lista);
-        Agregar_lista.setBounds(30, 100, 151, 39);
+        getContentPane().add(Agregar_lista2);
+        Agregar_lista2.setBounds(20, 140, 151, 39);
 
         jLabel5.setText("Peso");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(310, 30, 40, 20);
+        jLabel5.setBounds(310, 20, 40, 20);
 
         jLabel6.setText("Edad Maxima");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(310, 60, 100, 14);
+        jLabel6.setBounds(310, 50, 100, 14);
 
         jLabel7.setText("Energia");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(310, 90, 70, 14);
+        jLabel7.setBounds(310, 80, 70, 14);
 
         jLabel8.setText("Region");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(310, 130, 100, 14);
+        jLabel8.setBounds(310, 150, 100, 14);
 
         sp_edad1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         sp_edad1.setDoubleBuffered(true);
-        sp_edad1.setEnabled(false);
         sp_edad1.setValue(0
         );
         getContentPane().add(sp_edad1);
-        sp_edad1.setBounds(82, 64, 94, 20);
+        sp_edad1.setBounds(82, 64, 110, 30);
 
         c_peso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         c_peso.setDoubleBuffered(true);
-        c_peso.setEnabled(false);
         c_peso.setValue(0
         );
         getContentPane().add(c_peso);
-        c_peso.setBounds(410, 30, 94, 20);
+        c_peso.setBounds(410, 20, 100, 30);
 
         c_edad.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         c_edad.setDoubleBuffered(true);
-        c_edad.setEnabled(false);
         c_edad.setValue(0
         );
         getContentPane().add(c_edad);
-        c_edad.setBounds(410, 60, 94, 20);
+        c_edad.setBounds(410, 50, 100, 30);
         getContentPane().add(c_region);
-        c_region.setBounds(380, 130, 120, 20);
+        c_region.setBounds(390, 150, 120, 30);
 
         jLabel9.setText("Raza");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(310, 170, 50, 20);
+        jLabel9.setBounds(310, 180, 50, 20);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        c_raza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                c_razaActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(380, 170, 120, 20);
+        getContentPane().add(c_raza);
+        c_raza.setBounds(390, 180, 120, 30);
 
         jTextField2.setBackground(new java.awt.Color(0, 153, 153));
         jTextField2.setText("jTextField2");
         getContentPane().add(jTextField2);
         jTextField2.setBounds(269, 0, 20, 520);
 
-        jButton2.setText("AGREGAR AL ARBOL");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        Agregar_lista1.setText("AGREGAR LISTA");
+        Agregar_lista1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                Agregar_lista1MouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Agregar_lista1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                Agregar_lista1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(770, 0, 173, 39);
+        getContentPane().add(Agregar_lista1);
+        Agregar_lista1.setBounds(370, 220, 151, 39);
+
+        c_vivas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        c_vivas.setDoubleBuffered(true);
+        c_vivas.setValue(0
+        );
+        getContentPane().add(c_vivas);
+        c_vivas.setBounds(410, 110, 100, 30);
+
+        jLabel11.setText("Cantidad Vivas");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(310, 110, 90, 14);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
-        DefaultTreeModel m = (DefaultTreeModel) jt_personas.getModel();
-        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
-
-        //raiz.getChildAt(1).getChildAt(2).getUserObject()
-        DefaultMutableTreeNode nodo_persona;
-        nodo_persona = new DefaultMutableTreeNode(
-                new Persona(tf_nombre.getText(),
-                        (Integer) c_energia.getValue(), (String) cb_nacionalidad.getSelectedItem()
-                )
-        );
-        DefaultMutableTreeNode anio;
-        anio = new DefaultMutableTreeNode(
-                new SimpleDateFormat("YYYY").format(
-                        new Date())
-        );
-        DefaultMutableTreeNode mes;
-        mes = new DefaultMutableTreeNode(
-                new SimpleDateFormat("MM").format(
-                        new Date())
-        );
-
-        anio.add(mes);
-        nodo_persona.add(anio);
-        raiz.add(nodo_persona);
-        m.reload();
-
-
-    }//GEN-LAST:event_jButton2MouseClicked
-
-    private void Agregar_listaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Agregar_listaMouseClicked
+    private void Agregar_lista2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Agregar_lista2MouseClicked
         // TODO add your handling code here:
         DefaultListModel modelo
-                = (DefaultListModel) jl_personas.getModel();
+                = (DefaultListModel) jl_mundos.getModel();
         modelo.addElement(new Mundo(
                 (Integer) c_energia.getValue(),
                 tf_nombre.getText()
         ));
-        jl_personas.setModel(modelo);
+        jl_mundos.setModel(modelo);
         tf_nombre.setText("");
-        c_energia.setValue(20);
+        c_energia.setValue(0);
 
-    }//GEN-LAST:event_Agregar_listaMouseClicked
+    }//GEN-LAST:event_Agregar_lista2MouseClicked
 
     private void PasoalTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasoalTreeMouseClicked
         // TODO add your handling code here:
         //VISTA DE LA LIST HAY UN METODO GET SELECTED INDEX
-        if (jl_personas.getSelectedIndex() >= 0) {
+        if (jl_mundos.getSelectedIndex() >= 0) {
             DefaultTreeModel modeloARBOL
-                    = (DefaultTreeModel) jt_personas.getModel();
+                    = (DefaultTreeModel) jt_Universos.getModel();
             DefaultMutableTreeNode raiz
                     = (DefaultMutableTreeNode) modeloARBOL.getRoot();
             //obtener la persona a guardar
             DefaultListModel modeloLISTA
-                    = (DefaultListModel) jl_personas.getModel();
+                    = (DefaultListModel) jl_mundos.getModel();
             String nombre;
             int peso;
             nombre = ((Mundo) modeloLISTA.get(
-                    jl_personas.getSelectedIndex())).getN_Tortuga();
+                    jl_mundos.getSelectedIndex())).getN_Tortuga();
 
             peso = ((Mundo) modeloLISTA.get(
-                    jl_personas.getSelectedIndex())).getPeso_tor();
+                    jl_mundos.getSelectedIndex())).getPeso_tor();
             int centinela = -1;
             int centinela2 = -1;
 
@@ -418,8 +419,8 @@ public class Universo extends javax.swing.JFrame {
                                 = new DefaultMutableTreeNode(
                                         new Mundo(peso,
                                                 nombre)
-                        );
-                                
+                                );
+
                         ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
 
                     }
@@ -434,9 +435,9 @@ public class Universo extends javax.swing.JFrame {
                 DefaultMutableTreeNode p
                         = new DefaultMutableTreeNode(
                                 new Mundo(peso,
-                                nombre)
+                                        nombre)
                         );
-               //n.add(p);
+                //n.add(p);
                 raiz.add(n);
             }
             modeloARBOL.reload();
@@ -447,16 +448,16 @@ public class Universo extends javax.swing.JFrame {
 
     }//GEN-LAST:event_PasoalTreeMouseClicked
 
-    private void jl_personasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_personasMouseClicked
+    private void jl_mundosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_mundosMouseClicked
 
         if (evt.isMetaDown()) {
             mc_jlist.show(evt.getComponent(), evt.getX(), evt.getY());
         }
-    }//GEN-LAST:event_jl_personasMouseClicked
+    }//GEN-LAST:event_jl_mundosMouseClicked
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-        int pos = jl_personas.getSelectedIndex();
-        DefaultListModel modelo = (DefaultListModel) jl_personas.getModel();
+        int pos = jl_mundos.getSelectedIndex();
+        DefaultListModel modelo = (DefaultListModel) jl_mundos.getModel();
         String nombre = JOptionPane.showInputDialog(this, "Ingrese otro Nombre");
 
         modelo.insertElementAt(new Persona(nombre, ((Persona) modelo.getElementAt(pos)).getEdad(),
@@ -468,42 +469,42 @@ public class Universo extends javax.swing.JFrame {
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         DefaultListModel modelo
-                = (DefaultListModel) jl_personas.getModel();
+                = (DefaultListModel) jl_mundos.getModel();
         modelo.addElement(new Persona(tf_nombre.getText(),
                 (Integer) c_energia.getValue(),
                 (String) cb_nacionalidad.getSelectedItem()));
         //modelo.remove(pos);
         //((Persona)modelo.get(pos).set 
 
-        jl_personas.setModel(modelo);
+        jl_mundos.setModel(modelo);
         tf_nombre.setText("");
         c_energia.setValue(20);
         cb_nacionalidad.setSelectedIndex(0);
 
     }//GEN-LAST:event_agregarActionPerformed
 
-    private void Agregar_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Agregar_listaActionPerformed
+    private void Agregar_lista2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Agregar_lista2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Agregar_listaActionPerformed
+    }//GEN-LAST:event_Agregar_lista2ActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
 
-        int pos = jl_personas.getSelectedIndex();
-        DefaultListModel model = (DefaultListModel) jl_personas.getModel();
+        int pos = jl_mundos.getSelectedIndex();
+        DefaultListModel model = (DefaultListModel) jl_mundos.getModel();
         if (pos >= 0) {
             model.remove(pos);
         }
     }//GEN-LAST:event_borrarActionPerformed
 
-    private void jt_personasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_personasMouseClicked
+    private void jt_UniversosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_UniversosMouseClicked
         // TODO add your handling code here:
         if (evt.isMetaDown()) {
-            int row = jt_personas.getClosestRowForLocation(evt.getX(), evt.getY());
+            int row = jt_Universos.getClosestRowForLocation(evt.getX(), evt.getY());
             //MARCA LA FILA COMO SELECCIONADO
-            jt_personas.setSelectionRow(row);
+            jt_Universos.setSelectionRow(row);
             Object v1
                     //EL OBJETO HACE REFERENCIA AL ULTIMO ELEMENTO SELECCIONADO
-                    = jt_personas.getSelectionPath().getLastPathComponent();
+                    = jt_Universos.getSelectionPath().getLastPathComponent();
             nodo_seleccionado = (DefaultMutableTreeNode) v1;
             if (nodo_seleccionado.getUserObject() instanceof Persona) {
                 personas_Seleccionada
@@ -517,7 +518,7 @@ public class Universo extends javax.swing.JFrame {
             }
 
         }
-    }//GEN-LAST:event_jt_personasMouseClicked
+    }//GEN-LAST:event_jt_UniversosMouseClicked
 
     private void opcion_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcion_edadActionPerformed
         // TODO add your handling code here:
@@ -530,7 +531,7 @@ public class Universo extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
         if (response == JOptionPane.OK_OPTION) {
-            DefaultTreeModel m = (DefaultTreeModel) jt_personas.getModel();
+            DefaultTreeModel m = (DefaultTreeModel) jt_Universos.getModel();
             m.removeNodeFromParent(nodo_seleccionado);
             m.reload();
         }
@@ -538,19 +539,81 @@ public class Universo extends javax.swing.JFrame {
     }//GEN-LAST:event_opcion_eliminarActionPerformed
 
     private void num_personasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_num_personasActionPerformed
-        DefaultTreeModel m = (DefaultTreeModel) jt_personas.getModel();
+        DefaultTreeModel m = (DefaultTreeModel) jt_Universos.getModel();
 
         m.getChildCount(10);
 
     }//GEN-LAST:event_num_personasActionPerformed
 
-    private void jl_personas1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_personas1MouseClicked
+    private void jl_CriaturasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_CriaturasMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jl_personas1MouseClicked
+    }//GEN-LAST:event_jl_CriaturasMouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void c_razaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_razaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_c_razaActionPerformed
+
+    private void Agregar_lista1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Agregar_lista1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Agregar_lista1MouseClicked
+
+    private void Agregar_lista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Agregar_lista1ActionPerformed
+        DefaultListModel modelo
+                = (DefaultListModel) jl_Criaturas.getModel();
+        modelo.addElement(new Criaturas((Integer) c_peso.getValue(), (Integer) c_edad.getValue(),
+                (Integer) c_energia.getValue(), c_region.getText(), (Integer) c_vivas.getValue(), c_raza.getText())
+        );
+        jl_Criaturas.setModel(modelo);
+        tf_nombre.setText("");
+        c_energia.setValue(0);
+        c_vivas.setValue(0);
+        c_energia.setValue(0);
+        c_peso.setValue(0);
+        c_edad.setValue(0);
+
+
+    }//GEN-LAST:event_Agregar_lista1ActionPerformed
+
+    private void criatura_al_mundoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_criatura_al_mundoMouseClicked
+        // TODO add your handling code here:
+        int pos = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el Numero de la Poscion del tipo de Mundo desde 0"));
+        if (jl_Criaturas.getSelectedIndex() >= 0) {
+            DefaultTreeModel modeloARBOL
+                    = (DefaultTreeModel) jt_Universos.getModel();
+            DefaultMutableTreeNode raiz
+                    = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+            //obtener la persona a guardar
+            DefaultListModel modeloLISTA
+                    = (DefaultListModel) jl_Criaturas.getModel();
+            String region, raza;
+            int peso, energia, edad, vivas;
+            raza = ((Criaturas) modeloLISTA.get(
+                    jl_Criaturas.getSelectedIndex())).getRaza();
+
+            peso = ((Criaturas) modeloLISTA.get(
+                    jl_Criaturas.getSelectedIndex())).getPeso_cria();
+            edad = ((Criaturas) modeloLISTA.get(
+                    jl_Criaturas.getSelectedIndex())).getEdad_max();
+            energia = ((Criaturas) modeloLISTA.get(
+                    jl_Criaturas.getSelectedIndex())).getEnergia();
+            vivas = ((Criaturas) modeloLISTA.get(
+                    jl_Criaturas.getSelectedIndex())).getCant_vivas();
+            region = ((Criaturas) modeloLISTA.get(
+                    jl_Criaturas.getSelectedIndex())).getRegion();
+
+            DefaultMutableTreeNode p
+                    = new DefaultMutableTreeNode(
+                            new Criaturas(peso, edad, energia, region, vivas,
+                                    raza)
+                    );
+            ((DefaultMutableTreeNode) raiz.getChildAt(pos)).add(p);
+
+            int centinela = -1;
+            int centinela2 = -1;
+            modeloARBOL.reload();
+        }
+
+    }//GEN-LAST:event_criatura_al_mundoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -589,18 +652,22 @@ public class Universo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Agregar_lista;
+    private javax.swing.JButton Agregar_lista1;
+    private javax.swing.JButton Agregar_lista2;
     private javax.swing.JButton PasoalTree;
     private javax.swing.JMenuItem agregar;
     private javax.swing.JMenuItem borrar;
     private javax.swing.JSpinner c_edad;
     private javax.swing.JSpinner c_energia;
     private javax.swing.JSpinner c_peso;
+    private javax.swing.JTextField c_raza;
     private javax.swing.JTextField c_region;
+    private javax.swing.JSpinner c_vivas;
     private javax.swing.JMenuItem cambiar_nombre;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JToggleButton criatura_al_mundo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -613,12 +680,12 @@ public class Universo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTree jTree1;
-    private javax.swing.JList<String> jl_personas;
-    private javax.swing.JList<String> jl_personas1;
-    private javax.swing.JTree jt_personas;
+    private javax.swing.JList<String> jl_Criaturas;
+    private javax.swing.JList<String> jl_mundos;
+    private javax.swing.JTree jt_Universos;
     private javax.swing.JPopupMenu mc_jlist;
     private javax.swing.JPopupMenu menu_nacionalidad;
     private javax.swing.JPopupMenu menu_popup;

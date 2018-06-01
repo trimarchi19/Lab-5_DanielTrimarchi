@@ -29,6 +29,15 @@ public class Criaturas {
         System.out.println("");
     }
 
+    public String getRaza() {
+        return raza;
+    }
+
+    public void setRaza(String raza) {
+        this.raza = raza;
+    }
+    
+
  
 
     public int getPeso_cria() {
