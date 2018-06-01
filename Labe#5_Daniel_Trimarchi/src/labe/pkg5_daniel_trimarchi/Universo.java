@@ -7,6 +7,7 @@ package labe.pkg5_daniel_trimarchi;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -19,7 +20,7 @@ import javax.swing.tree.DefaultTreeModel;
 public class Universo extends javax.swing.JFrame {
 
     int pos;
-
+int pesoss;
     /**
      * Creates new form JTree
      */
@@ -45,8 +46,9 @@ public class Universo extends javax.swing.JFrame {
         menu_popup2 = new javax.swing.JPopupMenu();
         detalles = new javax.swing.JMenuItem();
         eliminar2 = new javax.swing.JMenuItem();
-        jPopupMenu1 = new javax.swing.JPopupMenu();
+        lm = new javax.swing.JPopupMenu();
         modificar = new javax.swing.JMenuItem();
+        mod = new javax.swing.JMenuItem();
         jLabel4 = new javax.swing.JLabel();
         tf_nombre = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -79,6 +81,10 @@ public class Universo extends javax.swing.JFrame {
         c_vivas = new javax.swing.JSpinner();
         jLabel11 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        pesos = new javax.swing.JTextField();
 
         jScrollPane1.setViewportView(jTree1);
 
@@ -114,13 +120,21 @@ public class Universo extends javax.swing.JFrame {
         });
         menu_popup2.add(eliminar2);
 
-        modificar.setText("Modificar");
+        modificar.setText("Modificar Nombre");
         modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modificarActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(modificar);
+        lm.add(modificar);
+
+        mod.setText("Modificar Peso");
+        mod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modActionPerformed(evt);
+            }
+        });
+        lm.add(mod);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 51));
@@ -243,10 +257,10 @@ public class Universo extends javax.swing.JFrame {
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(630, 60, 350, 370);
 
+        c_energia.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         c_energia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         c_energia.setDoubleBuffered(true);
-        c_energia.setValue(0
-        );
+        c_energia.setValue(1);
         getContentPane().add(c_energia);
         c_energia.setBounds(410, 80, 100, 30);
 
@@ -284,24 +298,28 @@ public class Universo extends javax.swing.JFrame {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(310, 150, 100, 14);
 
+        sp_edad1.setModel(new javax.swing.SpinnerNumberModel(1, 0, null, 1));
         sp_edad1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         sp_edad1.setDoubleBuffered(true);
-        sp_edad1.setValue(0
+        sp_edad1.setValue(1
+
         );
         getContentPane().add(sp_edad1);
         sp_edad1.setBounds(82, 64, 110, 30);
 
+        c_peso.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         c_peso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         c_peso.setDoubleBuffered(true);
-        c_peso.setValue(0
+        c_peso.setOpaque(false);
+        c_peso.setValue(1
         );
         getContentPane().add(c_peso);
         c_peso.setBounds(410, 20, 100, 30);
 
+        c_edad.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         c_edad.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         c_edad.setDoubleBuffered(true);
-        c_edad.setValue(0
-        );
+        c_edad.setValue(1);
         getContentPane().add(c_edad);
         c_edad.setBounds(410, 50, 100, 30);
         getContentPane().add(c_region);
@@ -338,9 +356,11 @@ public class Universo extends javax.swing.JFrame {
         getContentPane().add(Agregar_lista1);
         Agregar_lista1.setBounds(370, 220, 151, 39);
 
+        c_vivas.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         c_vivas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         c_vivas.setDoubleBuffered(true);
-        c_vivas.setValue(0
+        c_vivas.setValue(1
+
         );
         getContentPane().add(c_vivas);
         c_vivas.setBounds(410, 110, 100, 30);
@@ -352,6 +372,26 @@ public class Universo extends javax.swing.JFrame {
         jLabel3.setText("CLICK DERECHO EN EL TREE PARA VER Y ELIMINAR!!!!");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(630, 30, 370, 20);
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(590, 450, 140, 40);
+
+        jLabel12.setText("Codigo Del Universo");
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(590, 500, 140, 14);
+
+        jLabel13.setText("Peso Del Universo");
+        getContentPane().add(jLabel13);
+        jLabel13.setBounds(800, 500, 80, 14);
+
+        pesos.setEditable(false);
+        getContentPane().add(pesos);
+        pesos.setBounds(790, 460, 120, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -433,6 +473,8 @@ public class Universo extends javax.swing.JFrame {
                     raiz.add(n);
                 }
                 modeloARBOL.reload();
+                pesoss+=peso;
+                pesos.setText(String.valueOf(pesoss));
             } else {
                 JOptionPane.showMessageDialog(this, "No Hay Personas");
 
@@ -444,7 +486,9 @@ public class Universo extends javax.swing.JFrame {
     }//GEN-LAST:event_PasoalTreeMouseClicked
 
     private void jl_mundosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_mundosMouseClicked
-
+        if (evt.isMetaDown()) {
+            lm.show(evt.getComponent(), evt.getX(), evt.getY());
+        }
 
     }//GEN-LAST:event_jl_mundosMouseClicked
 
@@ -563,6 +607,8 @@ public class Universo extends javax.swing.JFrame {
                 int centinela = -1;
                 int centinela2 = -1;
                 modeloARBOL.reload();
+                pesoss+=peso;
+                 pesos.setText(String.valueOf(pesoss));
             }
         } catch (Exception e) {
 
@@ -587,6 +633,9 @@ public class Universo extends javax.swing.JFrame {
             DefaultTreeModel m = (DefaultTreeModel) jt_Universos.getModel();
             m.removeNodeFromParent(nodo_seleccionado);
             m.reload();
+            Random r=new Random();
+             pesoss -=20+r.nextInt(100);
+             pesos.setText(String.valueOf(pesoss));
         }
     }//GEN-LAST:event_eliminar2ActionPerformed
 
@@ -596,9 +645,23 @@ public class Universo extends javax.swing.JFrame {
         DefaultListModel modelo = (DefaultListModel) jl_mundos.getModel();
         String nombre = JOptionPane.showInputDialog(this, "Ingrese otro Nombre");
         modelo.insertElementAt(new Mundo(((Mundo) modelo.getElementAt(pos)).getPeso_tor(),
-                 nombre), pos);
+                nombre), pos);
         modelo.removeElementAt(pos + 1);
     }//GEN-LAST:event_modificarActionPerformed
+
+    private void modActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modActionPerformed
+        // TODO add your handling code here:
+
+        DefaultListModel modelo = (DefaultListModel) jl_mundos.getModel();
+        int peso = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese otro Peso"));
+        modelo.insertElementAt(new Mundo(peso,
+                ((Mundo) modelo.getElementAt(pos)).getN_Tortuga()), pos);
+        modelo.removeElementAt(pos + 1);
+    }//GEN-LAST:event_modActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -652,6 +715,8 @@ public class Universo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -661,22 +726,25 @@ public class Universo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTree jTree1;
     private javax.swing.JList<String> jl_Criaturas;
     private javax.swing.JList<String> jl_mundos;
     private javax.swing.JTree jt_Universos;
+    private javax.swing.JPopupMenu lm;
     private javax.swing.JPopupMenu menu_popup;
     private javax.swing.JPopupMenu menu_popup2;
+    private javax.swing.JMenuItem mod;
     private javax.swing.JMenuItem modificar;
     private javax.swing.JMenuItem opcion_eliminar;
     private javax.swing.JMenuItem peso_mund;
+    private javax.swing.JTextField pesos;
     private javax.swing.JSpinner sp_edad1;
     private javax.swing.JTextField tf_nombre;
     // End of variables declaration//GEN-END:variables
