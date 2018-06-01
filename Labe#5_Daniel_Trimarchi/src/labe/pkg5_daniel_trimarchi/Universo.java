@@ -498,6 +498,7 @@ int pesoss;
 
     private void jt_UniversosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_UniversosMouseClicked
         // TODO add your handling code here:
+        try{
         if (evt.isMetaDown()) {
             int row = jt_Universos.getClosestRowForLocation(evt.getX(), evt.getY());
             //MARCA LA FILA COMO SELECCIONADO
@@ -519,6 +520,9 @@ int pesoss;
                 mundo_seleccionado = (Mundo) nodo_seleccionado.getUserObject();
             }
 
+        }
+        }catch(Exception e){
+            
         }
     }//GEN-LAST:event_jt_UniversosMouseClicked
 
