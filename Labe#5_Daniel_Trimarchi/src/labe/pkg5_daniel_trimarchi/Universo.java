@@ -18,6 +18,8 @@ import javax.swing.tree.DefaultTreeModel;
  */
 public class Universo extends javax.swing.JFrame {
 
+    int pos;
+
     /**
      * Creates new form JTree
      */
@@ -37,17 +39,14 @@ public class Universo extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
-        mc_jlist = new javax.swing.JPopupMenu();
-        agregar = new javax.swing.JMenuItem();
-        modificar = new javax.swing.JMenuItem();
-        borrar = new javax.swing.JMenuItem();
         menu_popup = new javax.swing.JPopupMenu();
-        opcion_edad = new javax.swing.JMenuItem();
+        peso_mund = new javax.swing.JMenuItem();
         opcion_eliminar = new javax.swing.JMenuItem();
-        opcion_modificar = new javax.swing.JMenuItem();
-        menu_nacionalidad = new javax.swing.JPopupMenu();
-        num_personas = new javax.swing.JMenuItem();
-        cambiar_nombre = new javax.swing.JMenuItem();
+        menu_popup2 = new javax.swing.JPopupMenu();
+        detalles = new javax.swing.JMenuItem();
+        eliminar2 = new javax.swing.JMenuItem();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        modificar = new javax.swing.JMenuItem();
         jLabel4 = new javax.swing.JLabel();
         tf_nombre = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -79,40 +78,17 @@ public class Universo extends javax.swing.JFrame {
         Agregar_lista1 = new javax.swing.JButton();
         c_vivas = new javax.swing.JSpinner();
         jLabel11 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jTree1);
 
-        agregar.setText("Agregar");
-        agregar.addActionListener(new java.awt.event.ActionListener() {
+        peso_mund.setText("Ver Peso");
+        peso_mund.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregarActionPerformed(evt);
+                peso_mundActionPerformed(evt);
             }
         });
-        mc_jlist.add(agregar);
-
-        modificar.setText("Modificar");
-        modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarActionPerformed(evt);
-            }
-        });
-        mc_jlist.add(modificar);
-
-        borrar.setText("Borrar");
-        borrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                borrarActionPerformed(evt);
-            }
-        });
-        mc_jlist.add(borrar);
-
-        opcion_edad.setText("Ver edad");
-        opcion_edad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opcion_edadActionPerformed(evt);
-            }
-        });
-        menu_popup.add(opcion_edad);
+        menu_popup.add(peso_mund);
 
         opcion_eliminar.setText("Eliminar");
         opcion_eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -122,19 +98,29 @@ public class Universo extends javax.swing.JFrame {
         });
         menu_popup.add(opcion_eliminar);
 
-        opcion_modificar.setText("Modificar");
-        menu_popup.add(opcion_modificar);
-
-        num_personas.setText("Numero de Personas");
-        num_personas.addActionListener(new java.awt.event.ActionListener() {
+        detalles.setText("Ver Detalles");
+        detalles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                num_personasActionPerformed(evt);
+                detallesActionPerformed(evt);
             }
         });
-        menu_nacionalidad.add(num_personas);
+        menu_popup2.add(detalles);
 
-        cambiar_nombre.setText("Cambiar el Nombre");
-        menu_nacionalidad.add(cambiar_nombre);
+        eliminar2.setText("Eliminar Criatura");
+        eliminar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminar2ActionPerformed(evt);
+            }
+        });
+        menu_popup2.add(eliminar2);
+
+        modificar.setText("Modificar");
+        modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(modificar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 51));
@@ -255,7 +241,7 @@ public class Universo extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jt_Universos);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(690, 50, 350, 370);
+        jScrollPane2.setBounds(630, 60, 350, 370);
 
         c_energia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         c_energia.setDoubleBuffered(true);
@@ -280,7 +266,7 @@ public class Universo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Agregar_lista2);
-        Agregar_lista2.setBounds(20, 140, 151, 39);
+        Agregar_lista2.setBounds(30, 130, 151, 39);
 
         jLabel5.setText("Peso");
         getContentPane().add(jLabel5);
@@ -363,6 +349,10 @@ public class Universo extends javax.swing.JFrame {
         getContentPane().add(jLabel11);
         jLabel11.setBounds(310, 110, 90, 14);
 
+        jLabel3.setText("CLICK DERECHO EN EL TREE PARA VER Y ELIMINAR!!!!");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(630, 30, 370, 20);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -381,68 +371,73 @@ public class Universo extends javax.swing.JFrame {
     }//GEN-LAST:event_Agregar_lista2MouseClicked
 
     private void PasoalTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasoalTreeMouseClicked
+
         // TODO add your handling code here:
         //VISTA DE LA LIST HAY UN METODO GET SELECTED INDEX
-        if (jl_mundos.getSelectedIndex() >= 0) {
-            DefaultTreeModel modeloARBOL
-                    = (DefaultTreeModel) jt_Universos.getModel();
-            DefaultMutableTreeNode raiz
-                    = (DefaultMutableTreeNode) modeloARBOL.getRoot();
-            //obtener la persona a guardar
-            DefaultListModel modeloLISTA
-                    = (DefaultListModel) jl_mundos.getModel();
-            String nombre;
-            int peso;
-            nombre = ((Mundo) modeloLISTA.get(
-                    jl_mundos.getSelectedIndex())).getN_Tortuga();
+        try {
+            if (jl_mundos.getSelectedIndex() >= 0) {
+                DefaultTreeModel modeloARBOL
+                        = (DefaultTreeModel) jt_Universos.getModel();
+                DefaultMutableTreeNode raiz
+                        = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+                //obtener la persona a guardar
+                DefaultListModel modeloLISTA
+                        = (DefaultListModel) jl_mundos.getModel();
+                String nombre;
+                int peso;
+                nombre = ((Mundo) modeloLISTA.get(
+                        jl_mundos.getSelectedIndex())).getN_Tortuga();
 
-            peso = ((Mundo) modeloLISTA.get(
-                    jl_mundos.getSelectedIndex())).getPeso_tor();
-            int centinela = -1;
-            int centinela2 = -1;
+                peso = ((Mundo) modeloLISTA.get(
+                        jl_mundos.getSelectedIndex())).getPeso_tor();
+                int centinela = -1;
+                int centinela2 = -1;
 
-            //raiz.getChildCount()  ***TAMÑO DE LA LISTA***
-            for (int i = 0; i < raiz.getChildCount(); i++) {
-                if (raiz.getChildAt(i).toString().
-                        equals(nombre)) {
+                //raiz.getChildCount()  ***TAMÑO DE LA LISTA***
+                for (int i = 0; i < raiz.getChildCount(); i++) {
+                    if (raiz.getChildAt(i).toString().
+                            equals(nombre)) {
 
-                    for (int j = 0; j < raiz.getChildAt(i).getChildCount(); j++) {
-                        if (raiz.getChildAt(i).getChildAt(j).toString().
-                                equals(nombre)) {
-                            centinela2 = 1;
+                        for (int j = 0; j < raiz.getChildAt(i).getChildCount(); j++) {
+                            if (raiz.getChildAt(i).getChildAt(j).toString().
+                                    equals(nombre)) {
+                                centinela2 = 1;
+
+                            }
+                        }
+
+                        if (centinela2 == -1) {
+                            DefaultMutableTreeNode p
+                                    = new DefaultMutableTreeNode(
+                                            new Mundo(peso,
+                                                    nombre)
+                                    );
+
+                            ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
 
                         }
-                    }
-
-                    if (centinela2 == -1) {
-                        DefaultMutableTreeNode p
-                                = new DefaultMutableTreeNode(
-                                        new Mundo(peso,
-                                                nombre)
-                                );
-
-                        ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(p);
+                        centinela = 1;
 
                     }
-                    centinela = 1;
-
                 }
-            }
-            if (centinela == -1) {
-                DefaultMutableTreeNode n
-                        = new DefaultMutableTreeNode(nombre);
+                if (centinela == -1) {
+                    DefaultMutableTreeNode n
+                            = new DefaultMutableTreeNode(nombre);
 
-                DefaultMutableTreeNode p
-                        = new DefaultMutableTreeNode(
-                                new Mundo(peso,
-                                        nombre)
-                        );
-                //n.add(p);
-                raiz.add(n);
+                    DefaultMutableTreeNode p
+                            = new DefaultMutableTreeNode(
+                                    new Mundo(peso,
+                                            nombre)
+                            );
+                    //n.add(p);
+                    raiz.add(n);
+                }
+                modeloARBOL.reload();
+            } else {
+                JOptionPane.showMessageDialog(this, "No Hay Personas");
+
             }
-            modeloARBOL.reload();
-        } else {
-            JOptionPane.showMessageDialog(this, "No Hay Personas");
+        } catch (Exception e) {
 
         }
 
@@ -450,51 +445,12 @@ public class Universo extends javax.swing.JFrame {
 
     private void jl_mundosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_mundosMouseClicked
 
-        if (evt.isMetaDown()) {
-            mc_jlist.show(evt.getComponent(), evt.getX(), evt.getY());
-        }
+
     }//GEN-LAST:event_jl_mundosMouseClicked
-
-    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-        int pos = jl_mundos.getSelectedIndex();
-        DefaultListModel modelo = (DefaultListModel) jl_mundos.getModel();
-        String nombre = JOptionPane.showInputDialog(this, "Ingrese otro Nombre");
-
-        modelo.insertElementAt(new Persona(nombre, ((Persona) modelo.getElementAt(pos)).getEdad(),
-                ((Persona) modelo.getElementAt(pos)).getNacionalidad()), pos);
-        modelo.removeElementAt(pos + 1);
-
-
-    }//GEN-LAST:event_modificarActionPerformed
-
-    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-        DefaultListModel modelo
-                = (DefaultListModel) jl_mundos.getModel();
-        modelo.addElement(new Persona(tf_nombre.getText(),
-                (Integer) c_energia.getValue(),
-                (String) cb_nacionalidad.getSelectedItem()));
-        //modelo.remove(pos);
-        //((Persona)modelo.get(pos).set 
-
-        jl_mundos.setModel(modelo);
-        tf_nombre.setText("");
-        c_energia.setValue(20);
-        cb_nacionalidad.setSelectedIndex(0);
-
-    }//GEN-LAST:event_agregarActionPerformed
 
     private void Agregar_lista2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Agregar_lista2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Agregar_lista2ActionPerformed
-
-    private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
-
-        int pos = jl_mundos.getSelectedIndex();
-        DefaultListModel model = (DefaultListModel) jl_mundos.getModel();
-        if (pos >= 0) {
-            model.remove(pos);
-        }
-    }//GEN-LAST:event_borrarActionPerformed
 
     private void jt_UniversosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_UniversosMouseClicked
         // TODO add your handling code here:
@@ -506,24 +462,26 @@ public class Universo extends javax.swing.JFrame {
                     //EL OBJETO HACE REFERENCIA AL ULTIMO ELEMENTO SELECCIONADO
                     = jt_Universos.getSelectionPath().getLastPathComponent();
             nodo_seleccionado = (DefaultMutableTreeNode) v1;
-            if (nodo_seleccionado.getUserObject() instanceof Persona) {
-                personas_Seleccionada
-                        = (Persona) nodo_seleccionado.getUserObject();
-                menu_popup.show(evt.getComponent(), evt.getX(), evt.getY());
+
+            if (nodo_seleccionado.getUserObject() instanceof Criaturas) {
+                criatura_seleccionada = (Criaturas) nodo_seleccionado.getUserObject();
+                menu_popup2.show(evt.getComponent(), evt.getX(), evt.getY());
 
             }
-
-            if (nodo_seleccionado.getUserObject() instanceof String && !nodo_seleccionado.getUserObject().equals("Personas")) {
-
+            if (nodo_seleccionado.getUserObject() instanceof String && !nodo_seleccionado.getUserObject().equals("Universos")) //   mundo_seleccionado
+            //   = (Mundo) nodo_seleccionado.getUserObject();
+            {
+                menu_popup.show(evt.getComponent(), evt.getX(), evt.getY());
+                mundo_seleccionado = (Mundo) nodo_seleccionado.getUserObject();
             }
 
         }
     }//GEN-LAST:event_jt_UniversosMouseClicked
 
-    private void opcion_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcion_edadActionPerformed
+    private void peso_mundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peso_mundActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Tiene una Edad de: " + personas_Seleccionada.getEdad());
-    }//GEN-LAST:event_opcion_edadActionPerformed
+        JOptionPane.showMessageDialog(this, "Tiene una Edad de: " + mundo_seleccionado.getPeso_tor());
+    }//GEN-LAST:event_peso_mundActionPerformed
 
     private void opcion_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcion_eliminarActionPerformed
         int response = JOptionPane.showConfirmDialog(this, "Seguro de Eliminar?",
@@ -537,13 +495,6 @@ public class Universo extends javax.swing.JFrame {
         }
         System.out.println("");
     }//GEN-LAST:event_opcion_eliminarActionPerformed
-
-    private void num_personasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_num_personasActionPerformed
-        DefaultTreeModel m = (DefaultTreeModel) jt_Universos.getModel();
-
-        m.getChildCount(10);
-
-    }//GEN-LAST:event_num_personasActionPerformed
 
     private void jl_CriaturasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_CriaturasMouseClicked
         // TODO add your handling code here:
@@ -575,45 +526,79 @@ public class Universo extends javax.swing.JFrame {
     }//GEN-LAST:event_Agregar_lista1ActionPerformed
 
     private void criatura_al_mundoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_criatura_al_mundoMouseClicked
-        // TODO add your handling code here:
-        int pos = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el Numero de la Poscion del tipo de Mundo desde 0"));
-        if (jl_Criaturas.getSelectedIndex() >= 0) {
-            DefaultTreeModel modeloARBOL
-                    = (DefaultTreeModel) jt_Universos.getModel();
-            DefaultMutableTreeNode raiz
-                    = (DefaultMutableTreeNode) modeloARBOL.getRoot();
-            //obtener la persona a guardar
-            DefaultListModel modeloLISTA
-                    = (DefaultListModel) jl_Criaturas.getModel();
-            String region, raza;
-            int peso, energia, edad, vivas;
-            raza = ((Criaturas) modeloLISTA.get(
-                    jl_Criaturas.getSelectedIndex())).getRaza();
 
-            peso = ((Criaturas) modeloLISTA.get(
-                    jl_Criaturas.getSelectedIndex())).getPeso_cria();
-            edad = ((Criaturas) modeloLISTA.get(
-                    jl_Criaturas.getSelectedIndex())).getEdad_max();
-            energia = ((Criaturas) modeloLISTA.get(
-                    jl_Criaturas.getSelectedIndex())).getEnergia();
-            vivas = ((Criaturas) modeloLISTA.get(
-                    jl_Criaturas.getSelectedIndex())).getCant_vivas();
-            region = ((Criaturas) modeloLISTA.get(
-                    jl_Criaturas.getSelectedIndex())).getRegion();
+        try {        // TODO add your handling code here:
+            pos = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el Numero de la Poscion del tipo de Mundo desde 0"));
+            if (jl_Criaturas.getSelectedIndex() >= 0) {
+                DefaultTreeModel modeloARBOL
+                        = (DefaultTreeModel) jt_Universos.getModel();
+                DefaultMutableTreeNode raiz
+                        = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+                //obtener la persona a guardar
+                DefaultListModel modeloLISTA
+                        = (DefaultListModel) jl_Criaturas.getModel();
+                String region, raza;
+                int peso, energia, edad, vivas;
+                raza = ((Criaturas) modeloLISTA.get(
+                        jl_Criaturas.getSelectedIndex())).getRaza();
 
-            DefaultMutableTreeNode p
-                    = new DefaultMutableTreeNode(
-                            new Criaturas(peso, edad, energia, region, vivas,
-                                    raza)
-                    );
-            ((DefaultMutableTreeNode) raiz.getChildAt(pos)).add(p);
+                peso = ((Criaturas) modeloLISTA.get(
+                        jl_Criaturas.getSelectedIndex())).getPeso_cria();
+                edad = ((Criaturas) modeloLISTA.get(
+                        jl_Criaturas.getSelectedIndex())).getEdad_max();
+                energia = ((Criaturas) modeloLISTA.get(
+                        jl_Criaturas.getSelectedIndex())).getEnergia();
+                vivas = ((Criaturas) modeloLISTA.get(
+                        jl_Criaturas.getSelectedIndex())).getCant_vivas();
+                region = ((Criaturas) modeloLISTA.get(
+                        jl_Criaturas.getSelectedIndex())).getRegion();
 
-            int centinela = -1;
-            int centinela2 = -1;
-            modeloARBOL.reload();
+                DefaultMutableTreeNode p
+                        = new DefaultMutableTreeNode(
+                                new Criaturas(peso, edad, energia, region, vivas,
+                                        raza)
+                        );
+                ((DefaultMutableTreeNode) raiz.getChildAt(pos)).add(p);
+
+                int centinela = -1;
+                int centinela2 = -1;
+                modeloARBOL.reload();
+            }
+        } catch (Exception e) {
+
         }
-
     }//GEN-LAST:event_criatura_al_mundoMouseClicked
+
+    private void detallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detallesActionPerformed
+        JOptionPane.showMessageDialog(this, "Tiene una Edad de: " + criatura_seleccionada.getEdad_max() + "\n"
+                + "Peso de la Criatura" + criatura_seleccionada.getPeso_cria() + "\n"
+                + "Raza de la Criatura: " + criatura_seleccionada.getRaza() + "\n Region de la Criatura:" + criatura_seleccionada.getRegion() + "\n"
+                + "Cantida de especies vivas: " + criatura_seleccionada.getCant_vivas() + "\n "
+                + "Cantidad de Energia" + criatura_seleccionada.getEnergia());        // TODO add your handling code here:
+    }//GEN-LAST:event_detallesActionPerformed
+
+    private void eliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminar2ActionPerformed
+        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(this, "Seguro de Eliminar?",
+                "Confirm",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.OK_OPTION) {
+            DefaultTreeModel m = (DefaultTreeModel) jt_Universos.getModel();
+            m.removeNodeFromParent(nodo_seleccionado);
+            m.reload();
+        }
+    }//GEN-LAST:event_eliminar2ActionPerformed
+
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+        int pos = jl_mundos.getSelectedIndex();
+
+        DefaultListModel modelo = (DefaultListModel) jl_mundos.getModel();
+        String nombre = JOptionPane.showInputDialog(this, "Ingrese otro Nombre");
+        modelo.insertElementAt(new Mundo(((Mundo) modelo.getElementAt(pos)).getPeso_tor(),
+                 nombre), pos);
+        modelo.removeElementAt(pos + 1);
+    }//GEN-LAST:event_modificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -655,20 +640,20 @@ public class Universo extends javax.swing.JFrame {
     private javax.swing.JButton Agregar_lista1;
     private javax.swing.JButton Agregar_lista2;
     private javax.swing.JButton PasoalTree;
-    private javax.swing.JMenuItem agregar;
-    private javax.swing.JMenuItem borrar;
     private javax.swing.JSpinner c_edad;
     private javax.swing.JSpinner c_energia;
     private javax.swing.JSpinner c_peso;
     private javax.swing.JTextField c_raza;
     private javax.swing.JTextField c_region;
     private javax.swing.JSpinner c_vivas;
-    private javax.swing.JMenuItem cambiar_nombre;
     private javax.swing.JToggleButton criatura_al_mundo;
+    private javax.swing.JMenuItem detalles;
+    private javax.swing.JMenuItem eliminar2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -676,6 +661,7 @@ public class Universo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
@@ -686,18 +672,17 @@ public class Universo extends javax.swing.JFrame {
     private javax.swing.JList<String> jl_Criaturas;
     private javax.swing.JList<String> jl_mundos;
     private javax.swing.JTree jt_Universos;
-    private javax.swing.JPopupMenu mc_jlist;
-    private javax.swing.JPopupMenu menu_nacionalidad;
     private javax.swing.JPopupMenu menu_popup;
+    private javax.swing.JPopupMenu menu_popup2;
     private javax.swing.JMenuItem modificar;
-    private javax.swing.JMenuItem num_personas;
-    private javax.swing.JMenuItem opcion_edad;
     private javax.swing.JMenuItem opcion_eliminar;
-    private javax.swing.JMenuItem opcion_modificar;
+    private javax.swing.JMenuItem peso_mund;
     private javax.swing.JSpinner sp_edad1;
     private javax.swing.JTextField tf_nombre;
     // End of variables declaration//GEN-END:variables
 DefaultMutableTreeNode nodo_seleccionado;
 //Persona personas_Seleccionada;
+    Mundo mundo_seleccionado;
+    Criaturas criatura_seleccionada;
     DefaultListModel lista_seleccionada;
 }
