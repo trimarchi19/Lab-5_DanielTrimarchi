@@ -560,11 +560,11 @@ int pesoss;
         );
         jl_Criaturas.setModel(modelo);
         tf_nombre.setText("");
-        c_energia.setValue(0);
-        c_vivas.setValue(0);
-        c_energia.setValue(0);
-        c_peso.setValue(0);
-        c_edad.setValue(0);
+        c_energia.setValue(1);
+        c_vivas.setValue(1);
+        c_energia.setValue(1);
+        c_peso.setValue(1);
+        c_edad.setValue(1);
 
 
     }//GEN-LAST:event_Agregar_lista1ActionPerformed
@@ -609,6 +609,7 @@ int pesoss;
                 modeloARBOL.reload();
                 pesoss+=peso;
                  pesos.setText(String.valueOf(pesoss));
+                 c_peso.setValue(1);
             }
         } catch (Exception e) {
 
